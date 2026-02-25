@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-jieyou-mint: #A8E6CF;
+  --color-jieyou-bg: #FDFCF8;
+  --color-jieyou-gray: #F1F5F9;
+  --color-jieyou-text: #334155;
+  
+  --animate-spin-slow: spin 8s linear infinite;
+}
+
+@layer base {
+  body {
+    @apply bg-jieyou-bg text-jieyou-text font-sans antialiased;
+  }
+}
