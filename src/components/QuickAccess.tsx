@@ -1,17 +1,18 @@
-import { Music, Trophy, Disc } from 'lucide-react';
+import { Music, Trophy, Disc, LayoutGrid } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const QUICK_ACCESS = [
-  { id: '1', name: '听歌识曲', icon: Music, color: 'text-blue-500', bg: 'bg-blue-50', path: '/guess-music' },
+  { id: '1', name: '听歌识曲', icon: Music, color: 'text-white', bg: 'bg-gradient-to-r from-jieyou-mint to-teal-400', path: '/guess-music-locations' },
   { id: '2', name: '积分榜', icon: Trophy, color: 'text-yellow-500', bg: 'bg-yellow-50', path: '/ranking' },
   { id: '3', name: '单曲库', icon: Disc, color: 'text-purple-500', bg: 'bg-purple-50', path: '/music' },
+  { id: '4', name: 'APP 铺子', icon: LayoutGrid, color: 'text-pink-500', bg: 'bg-pink-50', path: '/app-store' },
 ];
 
 export const QuickAccess = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-4 gap-2 px-2">
       {(QUICK_ACCESS || []).map((item) => (
         <div
           key={item.id}
