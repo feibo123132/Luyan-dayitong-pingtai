@@ -12,7 +12,7 @@ export const PointsRanking = () => {
   return (
     <div className="overflow-x-auto pb-4 -mx-4 px-4 scrollbar-hide">
       <div className="flex space-x-4 w-max">
-        {MOCK_POINTS.map((user) => (
+        {(MOCK_POINTS || []).map((user) => (
           <div
             key={user.id}
             className="w-32 bg-white rounded-2xl p-4 shadow-sm flex flex-col items-center justify-center border border-gray-50"

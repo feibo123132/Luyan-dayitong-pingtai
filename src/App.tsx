@@ -3,6 +3,8 @@ import { MainLayout } from './layouts/MainLayout';
 import { Home } from './pages/Home';
 import { MusicPage } from './pages/MusicPage';
 import { UserPage } from './pages/UserPage';
+import { RankingPage } from './pages/RankingPage';
+import { GuessMusicPage } from './pages/GuessMusicPage';
 
 // Placeholder for Activity Page
 const ActivityPage = () => <div className="p-4 text-center text-gray-500">活动页面正在开发中...</div>;
@@ -15,6 +17,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="activity" element={<ActivityPage />} />
           <Route path="music" element={<MusicPage />} />
+          <Route path="ranking" element={<RankingPage />} />
+          <Route path="guess-music" element={<GuessMusicPage />} />
           <Route path="profile" element={<UserPage />} />
           {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />

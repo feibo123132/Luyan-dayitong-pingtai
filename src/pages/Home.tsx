@@ -28,7 +28,7 @@ export const Home = () => {
           <h2 className="text-lg font-semibold text-jieyou-text">路演风云榜</h2>
           <button className="text-xs text-jieyou-mint font-medium">查看全部</button>
         </div>
-        <LiveRanking />
+        <LiveRanking limit={5} />
       </section>
     </div>
   );

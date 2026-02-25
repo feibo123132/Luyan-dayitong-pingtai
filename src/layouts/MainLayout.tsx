@@ -1,15 +1,20 @@
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useLocation } from 'react-router-dom';
 import { Home, Music, User, Calendar } from 'lucide-react';
 
 export const MainLayout = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
     <div className="min-h-screen bg-jieyou-bg pb-20">
       <div className="max-w-md mx-auto relative min-h-screen bg-white/50 shadow-2xl">
         {/* Top Status Bar (Placeholder for Mobile Style) */}
-        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-gray-100">
-          <div className="font-bold text-lg text-jieyou-text">JIEYOU音乐工场</div>
-          <div className="text-sm text-jieyou-mint">菜单</div>
-        </header>
+        {isHomePage && (
+          <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-gray-100">
+            <div className="font-bold text-lg text-jieyou-text">JIEYOU音乐工场</div>
+            <div className="text-sm text-jieyou-mint">菜单</div>
+          </header>
+        )}
 
         {/* Main Content Area */}
         <main className="p-4 overflow-y-auto">
