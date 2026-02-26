@@ -3,7 +3,6 @@ import { Guitar, Medal, Trash2 } from 'lucide-react';
 import { useRankingStore } from '../store/useRankingStore';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { useState } from 'react';
 
 interface LiveRankingProps {
   limit?: number;
