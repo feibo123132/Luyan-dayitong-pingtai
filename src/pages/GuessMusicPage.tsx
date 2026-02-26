@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGuessMusicStore } from '../store/useGuessMusicStore';
 import { useState, useMemo } from 'react';
 
-type SortKey = 'count' | 'rate' | null;
+type SortKey = 'count' | 'rate' | 'rank' | 'participationCount' | null;
 type SortDirection = 'asc' | 'desc';
 
 export const GuessMusicPage = () => {
@@ -13,8 +13,8 @@ export const GuessMusicPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [showSearch, setShowSearch] = useState(false);
   const [sortConfig, setSortConfig] = useState<{ key: SortKey; direction: SortDirection }>({
-    key: null,
-    direction: 'desc',
+    key: 'rank',
+    direction: 'asc',
   });
 
   const handleSort = (key: SortKey) => {
@@ -43,10 +43,18 @@ export const GuessMusicPage = () => {
         if (sortConfig.key === 'count') {
           valA = a.count;
           valB = b.count;
-        } else {
+        } else if (sortConfig.key === 'rate') {
           // 'rate' - convert "88%" to 88
           valA = parseFloat(a.rate);
           valB = parseFloat(b.rate);
+        } else if (sortConfig.key === 'rank') {
+          valA = a.rank;
+          valB = b.rank;
+        } else if (sortConfig.key === 'participationCount') {
+          valA = a.participationCount;
+          valB = b.participationCount;
+        } else {
+          return 0;
         }
 
         return sortConfig.direction === 'asc' ? valA - valB : valB - valA;
@@ -93,7 +101,18 @@ export const GuessMusicPage = () => {
         <div className="bg-white/40 backdrop-blur-sm rounded-3xl p-2 shadow-lg border border-white/50">
           {/* Table Header */}
           <div className="bg-gradient-to-r from-jieyou-mint to-teal-400 text-white rounded-t-2xl py-3 px-4 flex text-sm font-bold shadow-sm items-center">
-            <div className="w-10 text-center">排名</div>
+            <div 
+              className="w-10 text-center cursor-pointer hover:bg-white/10 rounded py-1 transition-colors flex flex-col items-center justify-center"
+              onClick={() => handleSort('rank')}
+            >
+              <div className="flex items-center">
+                排名
+                <div className="ml-0.5 flex flex-col -space-y-1">
+                  <ArrowUp size={8} className={sortConfig.key === 'rank' && sortConfig.direction === 'asc' ? 'text-white' : 'text-white/40'} />
+                  <ArrowDown size={8} className={sortConfig.key === 'rank' && sortConfig.direction === 'desc' ? 'text-white' : 'text-white/40'} />
+                </div>
+              </div>
+            </div>
             
             <div className="flex-1 text-center relative group">
               <div 
@@ -146,7 +165,18 @@ export const GuessMusicPage = () => {
               </div>
             </div>
 
-            <div className="w-16 text-center">参与</div>
+            <div 
+              className="w-16 text-center cursor-pointer hover:bg-white/10 rounded py-1 transition-colors flex flex-col items-center justify-center"
+              onClick={() => handleSort('participationCount')}
+            >
+              <div className="flex items-center">
+                参与
+                <div className="ml-0.5 flex flex-col -space-y-1">
+                  <ArrowUp size={8} className={sortConfig.key === 'participationCount' && sortConfig.direction === 'asc' ? 'text-white' : 'text-white/40'} />
+                  <ArrowDown size={8} className={sortConfig.key === 'participationCount' && sortConfig.direction === 'desc' ? 'text-white' : 'text-white/40'} />
+                </div>
+              </div>
+            </div>
             {isEditing && <div className="w-8"></div>}
           </div>
 
