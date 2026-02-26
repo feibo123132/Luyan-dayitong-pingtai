@@ -4,6 +4,7 @@ import { Home } from './pages/Home';
 import { MusicPage } from './pages/MusicPage';
 import { UserPage } from './pages/UserPage';
 import { RankingPage } from './pages/RankingPage';
+import { RankingUserDetailPage } from './pages/RankingUserDetailPage';
 import { GuessMusicPage } from './pages/GuessMusicPage';
 import { LocationSelectPage } from './pages/LocationSelectPage';
 import { GuessUserHistoryPage } from './pages/GuessUserHistoryPage';
@@ -23,6 +24,7 @@ function App() {
           <Route path="activity" element={<ActivityPage />} />
           <Route path="music" element={<MusicPage />} />
           <Route path="ranking" element={<RankingPage />} />
+          <Route path="ranking/:userId" element={<RankingUserDetailPage />} />
           <Route path="guess-music" element={<GuessMusicPage />} />
           <Route path="guess-music-locations" element={<LocationSelectPage />} />
           <Route path="guess-music/history/:userId" element={<GuessUserHistoryPage />} />

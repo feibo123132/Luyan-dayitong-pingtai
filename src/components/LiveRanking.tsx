@@ -4,6 +4,8 @@ import { useRankingStore } from '../store/useRankingStore';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+import { useNavigate } from 'react-router-dom';
+
 interface LiveRankingProps {
   limit?: number;
   editable?: boolean;
@@ -11,6 +13,7 @@ interface LiveRankingProps {
 
 export const LiveRanking = ({ limit, editable = false }: LiveRankingProps) => {
   const { users, updateUser, deleteUser } = useRankingStore();
+  const navigate = useNavigate();
 
   // Take only top 5 for preview, or all if no limit
   const displayUsers = limit ? (users || []).slice(0, limit) : (users || []);
@@ -60,9 +63,15 @@ export const LiveRanking = ({ limit, editable = false }: LiveRankingProps) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              onClick={() => {
+                if (!editable) {
+                  navigate(`/ranking/${user.id}`);
+                }
+              }}
               className={twMerge(
                 clsx(
                   "rounded-3xl p-4 flex items-center shadow-sm border transition-all duration-300",
+                  editable ? "cursor-default" : "cursor-pointer hover:shadow-md active:scale-[0.98]",
                   isTop3 ? style.bgColor : "bg-white",
                   isTop3 ? style.borderColor : "border-transparent hover:border-jieyou-mint"
                 )
